@@ -1,9 +1,13 @@
 <template>
     <div class="about">
         <div>
-            <el-input style="width: 200px; margin-right: 10px" placeholder="内容を入力してください"></el-input>
-            <el-button type="warning">捜査</el-button>
-            <el-button type="primary">新規作成</el-button>
+            <el-input v-model="params.name" style="width: 200px" placeholder="名前を入力してください"></el-input>
+            <el-input v-model="params.phone" style="width: 200px; margin-left: 5px" placeholder="電話番号を入力してください"></el-input>
+            <el-button type="warning" style="margin-left: 10px" @click="findBySearch()">捜査</el-button>
+            <el-button type="warning" @click="reset()">リセット</el-button>
+<!--            <el-input style="width: 200px; margin-right: 10px" placeholder="内容を入力してください"></el-input>-->
+<!--            <el-button type="warning">捜査</el-button>-->
+<!--            <el-button type="primary">新規作成</el-button>-->
         </div>
         <div>
             <el-table :data="tableData" style="width: 100%; margin: 15px 0px">
@@ -41,6 +45,11 @@
         name: "AdminView",
         data() {
             return {
+                // data里定义一个params
+                params: {
+                    name: '',
+                    phone: ''
+                },
                 tableData: []
             }
         },
@@ -58,7 +67,29 @@
                     });
 
             },
-        }
+            // methods里定义一个findBySearch
+            findBySearch() {
+                request.get("/admin/search", {
+                    params: this.params
+                }).then(res => {
+                    if (res.code === '0') {
+                        this.tableData = res.data;
+                    } else {
+
+                    }
+                })
+            },
+            reset() {
+                this.params = {
+                    pageNum: 1,
+                    pageSize: 5,
+                    name: '',
+                    phone: ''
+                }
+                this.findBySearch();
+            },
+        },
+
     }
     // export default {
     //     data() {
