@@ -21,17 +21,31 @@
                     <el-button type="danger">削除</el-button>
                 </el-table-column>
             </el-table>
-            <div class="block">
+
+            <el-button type="warning" @click="reset()">リセット</el-button>
+
+            <div style="margin-top: 10px">
                 <el-pagination
                         @size-change="handleSizeChange"
                         @current-change="handleCurrentChange"
-                        :current-page="currentPage4"
-                        :page-sizes="[10, 20, 30, 40]"
-                        :page-size="10"
-                        layout="total, sizes, prev, pager, next, jumper"
-                        :total="400">
+                        :current-page="params.pageNum"
+                        :page-sizes="[5, 10, 15, 20]"
+                        :page-size="params.pageSize"
+                        layout="total, sizes, prev, pager, next"
+                        :total="total">
                 </el-pagination>
             </div>
+<!--            <div class="block">-->
+<!--                <el-pagination-->
+<!--                        @size-change="handleSizeChange"-->
+<!--                        @current-change="handleCurrentChange"-->
+<!--                        :current-page="currentPage4"-->
+<!--                        :page-sizes="[10, 20, 30, 40]"-->
+<!--                        :page-size="10"-->
+<!--                        layout="total, sizes, prev, pager, next, jumper"-->
+<!--                        :total="400">-->
+<!--                </el-pagination>-->
+<!--            </div>-->
 
         </div>
 
@@ -48,9 +62,12 @@
                 // data里定义一个params
                 params: {
                     name: '',
-                    phone: ''
+                    phone: '',
+                    pageNum: 1,
+                    pageSize: 5
                 },
-                tableData: []
+                tableData: [],
+                total: 0
             }
         },
         //页面加载的时候，做一些事情，在created里面
@@ -73,7 +90,8 @@
                     params: this.params
                 }).then(res => {
                     if (res.code === '0') {
-                        this.tableData = res.data;
+                        this.tableData = res.data.list;
+                        this.total = res.data.total;
                     } else {
 
                     }
@@ -86,6 +104,14 @@
                     name: '',
                     phone: ''
                 }
+                this.findBySearch();
+            },
+            handleSizeChange(pageSize) {
+                this.params.pageSize = pageSize;
+                this.findBySearch();
+            },
+            handleCurrentChange(pageNum) {
+                this.params.pageNum = pageNum;
                 this.findBySearch();
             },
         },
