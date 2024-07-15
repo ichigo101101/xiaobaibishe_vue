@@ -29,8 +29,6 @@
                 </el-table-column>
             </el-table>
 
-            <el-button type="warning" @click="reset()">リセット</el-button>
-
             <div style="margin-top: 10px">
                 <el-pagination
                         @size-change="handleSizeChange"
