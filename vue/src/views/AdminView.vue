@@ -12,7 +12,6 @@
         </div>
         <div>
             <el-table :data="tableData" style="width: 100%; margin: 15px 0px">
-<!--                <el-table-column prop="name" label="名前" width="180"></el-table-column>-->
                 <el-table-column prop="name" label="名前" ></el-table-column>
                 <el-table-column prop="sex" label="性別" ></el-table-column>
                 <el-table-column prop="age" label="年齢" ></el-table-column>
@@ -20,9 +19,8 @@
                 <el-table-column label="操作">
                     <template slot-scope="scope">
                         <el-button type="primary" @click="edit(scope.row)">編集</el-button>
-                        <!--                    <el-button type="danger">削除</el-button>-->
-                        <el-popconfirm title="确定删除吗？" @confirm="del(scope.row.id)">
-                            <el-button slot="reference" type="danger" style="margin-left: 5px">削除</el-button>
+                        <el-popconfirm title="削除しますか？" @confirm="del(scope.row.id)">
+                            <el-button slot="reference" type="danger" style="margin-left: 5px" label="削除">削除</el-button>
                         </el-popconfirm>
                     </template>
 
@@ -41,25 +39,25 @@
                 </el-pagination>
             </div>
             <div>
-                <el-dialog title="请填写信息" :visible.sync="dialogFormVisible" width="30%">
+                <el-dialog title="情報を入力してください" :visible.sync="dialogFormVisible" width="30%">
                     <el-form :model="form">
-                        <el-form-item label="姓名" label-width="15%">
+                        <el-form-item label="名前" label-width="15%">
                             <el-input v-model="form.name" autocomplete="off" style="width: 90%"></el-input>
                         </el-form-item>
-                        <el-form-item label="性别" label-width="15%">
-                            <el-radio v-model="form.sex" label="男">男</el-radio>
-                            <el-radio v-model="form.sex" label="女">女</el-radio>
+                        <el-form-item label="性別" label-width="15%">
+                            <el-radio v-model="form.sex" label="男性">男性</el-radio>
+                            <el-radio v-model="form.sex" label="女性">女性</el-radio>
                         </el-form-item>
-                        <el-form-item label="年龄" label-width="15%">
+                        <el-form-item label="年齢" label-width="15%">
                             <el-input v-model="form.age" autocomplete="off" style="width: 90%"></el-input>
                         </el-form-item>
-                        <el-form-item label="电话" label-width="15%">
+                        <el-form-item label="電話" label-width="15%">
                             <el-input v-model="form.phone" autocomplete="off" style="width: 90%"></el-input>
                         </el-form-item>
                     </el-form>
                     <div slot="footer" class="dialog-footer">
-                        <el-button @click="dialogFormVisible = false">取 消</el-button>
-                        <el-button type="primary" @click="submit()">确 定</el-button>
+                        <el-button @click="dialogFormVisible = false">キャンセル</el-button>
+                        <el-button type="primary" @click="submit()">確認</el-button>
                     </div>
                 </el-dialog>
             </div>
