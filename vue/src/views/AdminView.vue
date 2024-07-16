@@ -151,7 +151,7 @@
                     } else {
                         this.$message({
                             message: res.msg,
-                            type: 'success'
+                            type: 'error'
                         });
                     }
                 })
