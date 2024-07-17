@@ -8,7 +8,7 @@
                         <el-input v-model="admin.name" prefix-icon="el-icon-user" style="width: 80%" placeholder="ユーザー名を入力してください"></el-input>
                     </el-form-item>
                     <el-form-item>
-                        <el-input v-model="admin.password" prefix-icon="el-icon-lock" style="width: 80%" placeholder="パスワードを入力してください"></el-input>
+                        <el-input v-model="admin.password" show-password prefix-icon="el-icon-lock" style="width: 80%" placeholder="パスワードを入力してください"></el-input>
                     </el-form-item>
                     <el-form-item>
                         <el-button style="width: 80%; margin-top: 10px; background-color: #f78eb4; color: white; border-color: transparent;" type="primary" @click="login()">ログイン</el-button>
@@ -43,6 +43,7 @@
                             message: 'ログイン完了',
                             type: 'success'
                         });
+                        localStorage.setItem("user",JSON.stringify(res.data));
                         this.$router.push("/");
                     } else {
                         this.$message({

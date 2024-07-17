@@ -4,6 +4,17 @@
             <el-header style="background-color: #c784d9">
                 <img src="@/assets/logo.png" alt="" style="width: 60px; position: relative; top: 5px;">
                 <span style="font-size: 20px; line-height:1.3; margin-left: 10px;  color: #b81548">イチゴ101</span>
+                <el-dropdown style="float:right; height: 60px; line-height: 60px">
+                    <span class="el-dropdown-link" style="color:white; font-size:16px">{{ user.name }}<i class="el-icon-arrow-down el-icon--right"></i></span>
+                    <el-dropdown-menu slot="dropdown">
+                        <el-dropdown-item >
+                            <div @click="logout()">ログアウト
+                            </div>
+                        </el-dropdown-item>
+
+                    </el-dropdown-menu>
+                </el-dropdown>
+
             </el-header>
         </el-container>
 
@@ -48,7 +59,19 @@
 
 <script>
     export default {
-        name: "Layout"
+        name: "Layout",
+
+        data(){
+            return{
+                user:localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : {}
+            }
+        },
+        methods:{
+            logout(){
+                localStorage.removeItem("user");
+                this.$router.push("/login");
+            }
+        }
     }
 </script>
 
