@@ -143,7 +143,7 @@
                 request.post("/admin", this.form).then(res => {
                     if (res.code === '0') {
                         this.$message({
-                            message: '操作成功',
+                            message: '操作が完了しました',
                             type: 'success'
                         });
                         this.dialogFormVisible = false;
@@ -160,7 +160,7 @@
                 request.delete("/admin/" + id).then(res => {
                     if (res.code === '0') {
                         this.$message({
-                            message: '删除成功',
+                            message: '削除しました',
                             type: 'success'
                         });
                         this.findBySearch();
