@@ -6,6 +6,7 @@ import AdminView from '../views/AdminView.vue'
 import LayoutView from '../views/LayoutView.vue'
 // import RegisterView from "@/views/RegisterView";
 import RegisterView from '../views/RegisterView.vue'
+import BookView from '../views/BookView.vue'
 
 
 Vue.use(VueRouter)
@@ -35,6 +36,11 @@ const routes = [
         path: 'admin',
         name: 'admin',
         component: AdminView
+      },
+      {
+        path: 'book',
+        name: 'book',
+        component: BookView
       }
     ]
   },

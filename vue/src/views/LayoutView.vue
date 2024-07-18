@@ -42,7 +42,7 @@
                             <i class="el-icon-location"></i><span>情報管理</span>
                         </template>
                         <el-menu-item-group>
-                            <el-menu-item index="3-1">xxx情報</el-menu-item>
+                            <el-menu-item index="/book">図書情報</el-menu-item>
                             <el-menu-item index="3-2">yyy情報</el-menu-item>
                         </el-menu-item-group>
                     </el-submenu>
