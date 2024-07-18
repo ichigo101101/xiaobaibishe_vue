@@ -29,21 +29,38 @@
                 <el-table-column prop="author" label="著者" ></el-table-column>
                 <el-table-column prop="price" label="価格" ></el-table-column>
                 <el-table-column prop="press" label="出版社" ></el-table-column>
+<!--                <el-table-column label="操作">-->
+<!--                    <template slot-scope="scope">-->
+<!--                        <span style="display: inline-block; width: 30%;">-->
+<!--                            <el-button type="purple" @click="edit(scope.row)" :style="{ fontSize: '12px', textAlign: 'center' }">編集</el-button>-->
+<!--                        </span>-->
+<!--                        <span style="display: inline-block; width: 30%;">-->
+<!--                            <el-popconfirm title="削除しますか？" @confirm="del(scope.row.id)" :style="{ fontSize: '12px', textAlign: 'center' }">-->
+<!--                                <el-button slot="reference" type="purple" label="削除">削除</el-button>-->
+<!--                            </el-popconfirm>-->
+<!--                        </span>-->
+<!--                        <span style="display: inline-block; width: 100%;">-->
+<!--                            <el-button type="primary" @click="down(scope.row.img)" :style="{ fontSize: '12px', textAlign: 'center' }">ダウンロード</el-button>-->
+<!--                        </span>-->
+<!--                    </template>-->
+<!--                </el-table-column>-->
                 <el-table-column label="操作">
                     <template slot-scope="scope">
-                        <span style="display: inline-block; width: 100%;">
-                            <el-button type="purple" @click="edit(scope.row)" :style="{ fontSize: '12px', textAlign: 'center' }">編集</el-button>
+                        <span style="display: inline-block; width: 28%; margin-right: 10px; margin-bottom: 5px;">
+                            <el-button type="purple" @click="edit(scope.row)" size="mini">編集</el-button>
                         </span>
-                        <span style="display: inline-block; width: 30%;">
-                            <el-popconfirm title="削除しますか？" @confirm="del(scope.row.id)" :style="{ fontSize: '12px', textAlign: 'center' }">
-                                <el-button slot="reference" type="primary" label="削除">削除</el-button>
+                        <span style="display: inline-block; width: 28%; margin-right: 10px; margin-bottom: 5px;">
+                            <el-popconfirm title="削除しますか？" @confirm="del(scope.row.id)">
+                                <el-button slot="reference" type="purple" size="mini">削除</el-button>
                             </el-popconfirm>
                         </span>
-                        <span style="display: inline-block; width: 100%;">
-                            <el-button type="purple" @click="down(scope.row.img)" :style="{ fontSize: '12px', textAlign: 'center' }">ダウンロード</el-button>
+                        <span style="display: inline-block; width: 100%; margin-bottom: 10px;">
+                            <el-button type="primary" @click="down(scope.row.img)" size="mini">ダウンロード</el-button>
                         </span>
                     </template>
                 </el-table-column>
+
+
 
                 <!--                <el-table-column label="操作">-->
 <!--                    <template slot-scope="scope">-->
