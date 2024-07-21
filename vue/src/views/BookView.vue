@@ -190,7 +190,7 @@
                 this.dialogFormVisible = true;
             },
             submit() {
-                request.post("/admin", this.form).then(res => {
+                request.post("/book", this.form).then(res => {
                     if (res.code === '0') {
                         this.$message({
                             message: '操作が完了しました',
@@ -207,7 +207,7 @@
                 })
             },
             del(id) {
-                request.delete("/admin/" + id).then(res => {
+                request.delete("/book/" + id).then(res => {
                     if (res.code === '0') {
                         this.$message({
                             message: '削除しました',
@@ -217,7 +217,7 @@
                     } else {
                         this.$message({
                             message: res.msg,
-                            type: 'success'
+                            type: 'error'
                         });
                     }
                 })
