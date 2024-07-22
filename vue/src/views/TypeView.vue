@@ -8,6 +8,10 @@
             <el-popconfirm title="削除してもよろしいですか？？" @confirm="delBatch()">
                 <el-button slot="reference" type="primary" style="margin-left: 5px">一括削除</el-button>
             </el-popconfirm>
+            <el-button type="success" style="margin-left: 10px" @click="exp()">エクスポート</el-button>
+            <el-upload action="http://localhost:8080/api/type/upload" style="display: inline-block; margin-left: 10px" :show-file-list="false" :on-success="successUpload">
+                <el-button size="small" type="primary">一括インポート</el-button>
+            </el-upload>
         </div>
         <div>
             <el-table :data="tableData" style="width: 100%" ref="table" @selection-change="handleSelectionChange" :row-key="getRowKeys">
@@ -169,6 +173,18 @@
             },
             getRowKeys(){
                 return row.id;
+            },
+            exp() {
+                let user = localStorage.getItem("user");
+                location.href = 'http://localhost:8080/api/type/export?token=' + JSON.parse(user).token
+            },
+            successUpload(res) {
+                if (res.code === '0') {
+                    this.$message.success("批量导入成功")
+                    this.findBySearch()
+                } else {
+                    this.$message.error(res.msg)
+                }
             }
         }
     }
