@@ -8,7 +8,7 @@
             <el-popconfirm title="削除してもよろしいですか？？" @confirm="delBatch()">
                 <el-button slot="reference" type="primary" style="margin-left: 5px">一括削除</el-button>
             </el-popconfirm>
-            <el-button type="success" style="margin-left: 10px" @click="exp()">エクスポート</el-button>
+            <el-button type="success" style="margin-left: 10px" @click="exp()">一括インポート</el-button>
             <el-upload action="http://localhost:8080/api/type/upload" style="display: inline-block; margin-left: 10px" :show-file-list="false" :on-success="successUpload">
                 <el-button size="small" type="primary">一括インポート</el-button>
             </el-upload>
