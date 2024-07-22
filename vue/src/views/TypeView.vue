@@ -10,7 +10,7 @@
             </el-popconfirm>
         </div>
         <div>
-            <el-table :data="tableData" style="width: 100%" @selection-change="handleSelectionChange">
+            <el-table :data="tableData" style="width: 100%" ref="table" @selection-change="handleSelectionChange" :row-key="getRowKeys">
                 <el-table-column type="selection" width="55" align="center"></el-table-column>
                 <el-table-column prop="name" label="カテゴリー名"></el-table-column>
                 <el-table-column prop="description" label="カテゴリーの説明"></el-table-column>
@@ -166,6 +166,9 @@
             },
             handleSelectionChange(val) {
                 this.multipleSelection = val;
+            },
+            getRowKeys(){
+                return row.id;
             }
         }
     }
