@@ -3,16 +3,9 @@
         <div>
             <el-input v-model="params.name" style="width: 200px" placeholder="書名を入力してください"></el-input>
             <el-input v-model="params.author" style="width: 200px; margin-left: 5px" placeholder="著者を入力してください"></el-input>
-<!--            <el-button type="warning" style="margin-left: 10px" @click="findBySearch()">捜査</el-button>-->
-<!--            <el-button type="warning" @click="reset()">リセット</el-button>-->
-<!--            <el-button type="primary" style="margin-left: 10px" @click="add()">追加</el-button>-->
             <el-button type="purple" style="margin-left: 10px" @click="findBySearch()">捜査</el-button>
             <el-button type="purple" @click="reset()">リセット</el-button>
             <el-button type="primary" style="margin-left: 10px" @click="add()">追加</el-button>
-
-            <!--            <el-input style="width: 200px; margin-right: 10px" placeholder="内容を入力してください"></el-input>-->
-            <!--            <el-button type="warning">捜査</el-button>-->
-            <!--            <el-button type="primary">新規作成</el-button>-->
         </div>
         <div>
             <el-table :data="tableData" style="width: 100%; margin: 15px 0px">
@@ -29,21 +22,8 @@
                 <el-table-column prop="author" label="著者" ></el-table-column>
                 <el-table-column prop="price" label="価格" ></el-table-column>
                 <el-table-column prop="press" label="出版社" ></el-table-column>
-<!--                <el-table-column label="操作">-->
-<!--                    <template slot-scope="scope">-->
-<!--                        <span style="display: inline-block; width: 30%;">-->
-<!--                            <el-button type="purple" @click="edit(scope.row)" :style="{ fontSize: '12px', textAlign: 'center' }">編集</el-button>-->
-<!--                        </span>-->
-<!--                        <span style="display: inline-block; width: 30%;">-->
-<!--                            <el-popconfirm title="削除しますか？" @confirm="del(scope.row.id)" :style="{ fontSize: '12px', textAlign: 'center' }">-->
-<!--                                <el-button slot="reference" type="purple" label="削除">削除</el-button>-->
-<!--                            </el-popconfirm>-->
-<!--                        </span>-->
-<!--                        <span style="display: inline-block; width: 100%;">-->
-<!--                            <el-button type="primary" @click="down(scope.row.img)" :style="{ fontSize: '12px', textAlign: 'center' }">ダウンロード</el-button>-->
-<!--                        </span>-->
-<!--                    </template>-->
-<!--                </el-table-column>-->
+                <el-table-column prop="typeName" label="図書分類"></el-table-column>
+
                 <el-table-column label="操作">
                     <template slot-scope="scope">
                         <span style="display: inline-block; width: 28%; margin-right: 10px; margin-bottom: 5px;">
@@ -60,19 +40,6 @@
                     </template>
                 </el-table-column>
 
-
-
-                <!--                <el-table-column label="操作">-->
-<!--                    <template slot-scope="scope">-->
-<!--                        <span style="display: inline-block;">-->
-<!--                        <el-button type="purple" @click="edit(scope.row)" >編集</el-button>-->
-<!--                        <el-button type="purple" @click="down(scope.row.img)">ダウンロード</el-button>-->
-<!--                        <el-popconfirm title="削除しますか？" @confirm="del(scope.row.id)">-->
-<!--                            <el-button slot="reference" type="primary" style="margin-left: 5px" label="削除">削除</el-button>-->
-<!--                        </el-popconfirm>-->
-<!--                        </span>-->
-<!--                    </template>-->
-<!--                </el-table-column>-->
 
             </el-table>
 
@@ -107,6 +74,13 @@
                         <el-form-item label="出版社" label-width="20%">
                             <el-input v-model="form.press" autocomplete="off" style="width: 90%"></el-input>
                         </el-form-item>
+
+
+                        <el-form-item label="図書分類" label-width="20%">
+                            <el-select v-model="form.typeId" placeholder="请选择" style="width: 90%">
+                                <el-option v-for="item in typeObjs" :key="item.id" :label="item.name" :value="item.id"></el-option>
+                            </el-select>
+                        </el-form-item>
                     </el-form>
                     <div slot="footer" class="dialog-footer">
                         <el-button @click="dialogFormVisible = false">キャンセル</el-button>
@@ -137,15 +111,26 @@
                 tableData: [],
                 total: 0,
                 dialogFormVisible: false,
-                form: {}
+                form: {},
+                typeObjs:[]
             }
         },
         //页面加载的时候，做一些事情，在created里面
         created() {
             this.findBySearch();
+            this.findTypes();
         },
         //定义一些页面上控件触发的时间调用
         methods: {
+            findTypes(){
+                request.get("/type").then(res =>{
+                    if(res.code === '0'){
+                        this.typeObjs = res.data;
+                    }else{
+                        this.$message.error(res.msg)
+                    }
+                })
+    },
             // methods里定义一个findBySearch
             findBySearch() {
                 request.get("/book/search", {
