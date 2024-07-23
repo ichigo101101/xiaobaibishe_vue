@@ -171,8 +171,8 @@
             handleSelectionChange(val) {
                 this.multipleSelection = val;
             },
-            getRowKeys(){
-                return row.id;
+            getRowKeys(scope) {
+                return scope.row && scope.row.id;
             },
             exp() {
                 let user = localStorage.getItem("user");
