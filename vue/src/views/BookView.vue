@@ -149,6 +149,7 @@
                     }
                 })
             },
+
             reset() {
                 this.params = {
                     pageNum: 1,
