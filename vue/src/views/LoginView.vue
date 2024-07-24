@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div style="width: 400px; height: 350px; margin: 150px auto; background-color:rgba(234,130,161,0.54); border-radius: 10px">
+        <div style="width: 400px; height: 400px; margin: 120px auto; background-color:rgba(234,130,161,0.54); border-radius: 10px">
             <div style="width: 100%; height: 100px; font-size: 30px; line-height: 100px; text-align: center; color: #d04a70">ログイン歓迎</div>
             <div style="margin-top: 25px; text-align: center; height: 320px;">
                 <el-form :model="admin">
@@ -11,10 +11,19 @@
                         <el-input v-model="admin.password" show-password prefix-icon="el-icon-lock" style="width: 80%" placeholder="パスワードを入力してください"></el-input>
                     </el-form-item>
                     <el-form-item>
+                        <el-select v-model="admin.role" placeholder="選んでください" style="width: 80%">
+                            <el-option label="教員" value="ROLE_TEACHER"></el-option>
+                            <el-option label="学生" value="ROLE_STUDENT"></el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item>
                         <el-button style="width: 80%; margin-top: 10px; background-color: #f78eb4; color: white; border-color: transparent;" type="primary" @click="login()">ログイン</el-button>
                     </el-form-item>
                 </el-form>
 
+            </div>
+            <div style="text-align: center">
+                未登録ですか？<a href="javascript:void(0)" style="text-decoration: none" @click="navRegister">登録してください</a>
             </div>
         </div>
     </div>
@@ -36,6 +45,9 @@
         },
         // 定义一些页面上控件出发的事件调用的方法
         methods: {
+            navRegister() {
+                this.$router.push("/register")
+            },
             login() {
                 request.post("/admin/login", this.admin).then(res => {
                     if (res.code === '0') {

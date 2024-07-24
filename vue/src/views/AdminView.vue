@@ -3,15 +3,10 @@
         <div>
             <el-input v-model="params.name" style="width: 200px" placeholder="名前を入力してください"></el-input>
             <el-input v-model="params.phone" style="width: 200px; margin-left: 5px" placeholder="電話番号を入力してください"></el-input>
-<!--            <el-button type="warning" style="margin-left: 10px" @click="findBySearch()">捜査</el-button>-->
-<!--            <el-button type="warning" @click="reset()">リセット</el-button>-->
-<!--            <el-button type="primary" style="margin-left: 10px" @click="add()">追加</el-button>-->
             <el-button type="purple" style="margin-left: 10px" @click="findBySearch()">捜査</el-button>
             <el-button type="purple" @click="reset()">リセット</el-button>
             <el-button type="primary" style="margin-left: 10px" @click="add()">追加</el-button>
-<!--            <el-input style="width: 200px; margin-right: 10px" placeholder="内容を入力してください"></el-input>-->
-<!--            <el-button type="warning">捜査</el-button>-->
-<!--            <el-button type="primary">新規作成</el-button>-->
+
         </div>
         <div>
             <el-table :data="tableData" style="width: 100%; margin: 15px 0px">
@@ -19,6 +14,7 @@
                 <el-table-column prop="sex" label="性別" ></el-table-column>
                 <el-table-column prop="age" label="年齢" ></el-table-column>
                 <el-table-column prop="phone" label="電話番号" ></el-table-column>
+                <el-table-column prop="role" label="角色"></el-table-column>
                 <el-table-column label="操作">
                     <template slot-scope="scope">
                         <el-button type="purple" @click="edit(scope.row)">編集</el-button>
@@ -34,12 +30,13 @@
                 <el-pagination
                         @size-change="handleSizeChange"
                         @current-change="handleCurrentChange"
-                        :current-page="params.pageNum"
+                        :current-page.sync="params.pageNum"
                         :page-sizes="[5, 10, 15, 20]"
                         :page-size="params.pageSize"
                         layout="total, sizes, prev, pager, next"
                         :total="total">
                 </el-pagination>
+
             </div>
             <div>
                 <el-dialog title="情報を入力してください" :visible.sync="dialogFormVisible" width="30%">
@@ -56,6 +53,12 @@
                         </el-form-item>
                         <el-form-item label="電話" label-width="15%">
                             <el-input v-model="form.phone" autocomplete="off" style="width: 90%"></el-input>
+                        </el-form-item>
+                        <el-form-item label="角色" label-width="15%">
+                            <el-select v-model="form.role" placeholder="请选择" style="width: 90%">
+                                <el-option label="教师" value="ROLE_TEACHER"></el-option>
+                                <el-option label="学生" value="ROLE_STUDENT"></el-option>
+                            </el-select>
                         </el-form-item>
                     </el-form>
                     <div slot="footer" class="dialog-footer">
@@ -182,28 +185,6 @@
         },
 
     }
-    // export default {
-    //     data() {
-    //         return {
-    //             tableData: [{
-    //                 date: '2016-05-02',
-    //                 name: '田中愛',
-    //                 address: '千葉県市川市平田４丁目'
-    //             }, {
-    //                 date: '2016-05-04',
-    //                 name: '田中愛',
-    //                 address: '千葉県市川市平田４丁目'
-    //             }, {
-    //                 date: '2016-05-01',
-    //                 name: '田中愛',
-    //                 address: '千葉県市川市平田４丁目'
-    //             }, {
-    //                 date: '2016-05-03',
-    //                 name: '田中愛',
-    //                 address: '千葉県市川市平田４丁目'
-    //             }]
-    //         }
-    //     }
-    // }
+
 </script>
 

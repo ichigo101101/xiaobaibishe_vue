@@ -34,7 +34,7 @@
                         </template>
                         <el-menu-item-group>
                             <el-menu-item index="/admin">管理者情報</el-menu-item>
-                            <el-menu-item index="1-2">ユーザー情報</el-menu-item>
+<!--                            <el-menu-item index="1-2">ユーザー情報</el-menu-item>-->
                         </el-menu-item-group>
                     </el-submenu>
                     <el-submenu index="3">
