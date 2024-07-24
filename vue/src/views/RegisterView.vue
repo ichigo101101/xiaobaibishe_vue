@@ -19,9 +19,7 @@
                     <el-form-item>
                         <el-button style="width: 80%; margin-top: 10px; background-color: #f78eb4; color: white; border-color: transparent;" type="primary" @click="register()">新規登録</el-button>
                     </el-form-item>
-
                 </el-form>
-
             </div>
             <div style="text-align: center">
                 アカウントをお持ちですか？<a href="javascript:void(0)" style="text-decoration: none" @click="navLogin">ログインしてください</a>
