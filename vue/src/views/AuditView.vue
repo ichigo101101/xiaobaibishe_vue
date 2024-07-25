@@ -21,9 +21,9 @@
 <!--                        <el-popconfirm title="削除しますか？" @confirm="del(scope.row.id)">-->
 <!--                            <el-button slot="reference" type="danger" style="margin-left: 5px">削除</el-button>-->
 <!--                        </el-popconfirm>-->
-                        <span style="display: inline-block; width: 20%; margin-right: 30px; margin-bottom: 5px;">
-                            <el-button type="purple" @click="edit(scope.row)" size="mini" v-if="isStudentRole">編集</el-button>
-                        </span>
+<!--                        <span style="display: inline-block; width: 20%; margin-right: 30px; margin-bottom: 5px;">-->
+<!--                            <el-button type="purple" @click="edit(scope.row)" size="mini" v-if="isStudentRole">編集</el-button>-->
+<!--                        </span>-->
 <!--                        <el-button type="success" @click="audit(scope.row)" v-if="isTeacherRole">審査</el-button>-->
 <!--                        <span style="display: inline-block; width: 20%; margin-right: 20px; margin-bottom: 5px;">-->
 <!--                            <el-button type="purple" @click="audit(scope.row)" size="mini" v-if="isTeacherRole">審査</el-button>-->
@@ -35,9 +35,13 @@
 <!--                            </el-popconfirm>-->
 <!--                        </span>-->
                         <el-row type="flex" justify="start" align="middle" style="margin-bottom: 5px;">
+                            <el-col :span="10">
+                                <el-button type="purple" @click="edit(scope.row)" size="mini" v-if="isStudentRole">編集</el-button>
+                            </el-col>
                             <el-col :span="12">
                                 <el-button type="purple" @click="audit(scope.row)" size="mini" v-if="isTeacherRole">審査</el-button>
                             </el-col>
+
                             <el-col :span="10">
                                 <el-popconfirm title="削除しますか？" @confirm="del(scope.row.id)">
                                     <el-button slot="reference" type="primary" size="mini">削除</el-button>
