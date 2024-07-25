@@ -14,43 +14,32 @@
                 <el-table-column prop="userName" label="休暇ユーザー"></el-table-column>
                 <el-table-column prop="status" label="審査状況"></el-table-column>
                 <el-table-column prop="reason" label="審査意見"></el-table-column>
+<!--                <el-table-column label="操作">-->
+<!--                    <template slot-scope="scope">-->
+<!--                        <el-row type="flex" justify="start" align="middle" style="margin-bottom: 5px;">-->
+<!--                            <el-col :span="10">-->
+<!--                                <el-button type="purple" @click="edit(scope.row)" size="mini" v-if="isStudentRole">編集</el-button>-->
+<!--                            </el-col>-->
+<!--                            <el-col :span="12">-->
+<!--                                <el-button type="purple" @click="audit(scope.row)" size="mini" v-if="isTeacherRole">審査</el-button>-->
+<!--                            </el-col>-->
+
+<!--                            <el-col :span="10">-->
+<!--                                <el-popconfirm title="削除しますか？" @confirm="del(scope.row.id)">-->
+<!--                                    <el-button slot="reference" type="primary" size="mini">削除</el-button>-->
+<!--                                </el-popconfirm>-->
+<!--                            </el-col>-->
+<!--                        </el-row>-->
+<!--                    </template>-->
+<!--                </el-table-column>-->
+
                 <el-table-column label="操作">
                     <template slot-scope="scope">
-<!--                        <el-button type="primary" @click="edit(scope.row)" v-if="isStudentRole">編集</el-button>-->
-
-<!--                        <el-popconfirm title="削除しますか？" @confirm="del(scope.row.id)">-->
-<!--                            <el-button slot="reference" type="danger" style="margin-left: 5px">削除</el-button>-->
-<!--                        </el-popconfirm>-->
-<!--                        <span style="display: inline-block; width: 20%; margin-right: 30px; margin-bottom: 5px;">-->
-<!--                            <el-button type="purple" @click="edit(scope.row)" size="mini" v-if="isStudentRole">編集</el-button>-->
-<!--                        </span>-->
-<!--                        <el-button type="success" @click="audit(scope.row)" v-if="isTeacherRole">審査</el-button>-->
-<!--                        <span style="display: inline-block; width: 20%; margin-right: 20px; margin-bottom: 5px;">-->
-<!--                            <el-button type="purple" @click="audit(scope.row)" size="mini" v-if="isTeacherRole">審査</el-button>-->
-<!--                        </span>-->
-
-<!--                        <span style="display: inline-block; width: 20%; margin-right: 10px; ">-->
-<!--                            <el-popconfirm title="削除しますか？" @confirm="del(scope.row.id)">-->
-<!--                                <el-button slot="reference" type="primary" size="mini">削除</el-button>-->
-<!--                            </el-popconfirm>-->
-<!--                        </span>-->
-                        <el-row type="flex" justify="start" align="middle" style="margin-bottom: 5px;">
-                            <el-col :span="10">
-                                <el-button type="purple" @click="edit(scope.row)" size="mini" v-if="isStudentRole">編集</el-button>
-                            </el-col>
-                            <el-col :span="12">
-                                <el-button type="purple" @click="audit(scope.row)" size="mini" v-if="isTeacherRole">審査</el-button>
-                            </el-col>
-
-                            <el-col :span="10">
-                                <el-popconfirm title="削除しますか？" @confirm="del(scope.row.id)">
-                                    <el-button slot="reference" type="primary" size="mini">削除</el-button>
-                                </el-popconfirm>
-                            </el-col>
-                        </el-row>
-
-
-
+                        <el-button type="purple" @click="edit(scope.row)"  size="mini" v-if="isStudentRole">編集</el-button>
+                        <el-button type="purple" @click="audit(scope.row)" size="mini" v-if="isTeacherRole">審査</el-button>
+                        <el-popconfirm title="削除しますか？" @confirm="del(scope.row.id)">
+                            <el-button slot="reference" type="primary" style="margin-left: 5px" label="削除" size="mini">削除</el-button>
+                        </el-popconfirm>
                     </template>
                 </el-table-column>
             </el-table>
