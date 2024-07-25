@@ -44,7 +44,7 @@
                         <el-menu-item-group>
                             <el-menu-item index="/type">図書分類</el-menu-item>
                             <el-menu-item index="/book">図書情報</el-menu-item>
-                            <el-menu-item index="/audit">请假审核</el-menu-item>
+                            <el-menu-item index="/audit">休暇審査</el-menu-item>
                         </el-menu-item-group>
                     </el-submenu>
 
