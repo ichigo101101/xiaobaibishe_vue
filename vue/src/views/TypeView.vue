@@ -180,7 +180,7 @@
             },
             successUpload(res) {
                 if (res.code === '0') {
-                    this.$message.success("批量导入成功")
+                    this.$message.success("一括インポート成功")
                     this.findBySearch()
                 } else {
                     this.$message.error(res.msg)
