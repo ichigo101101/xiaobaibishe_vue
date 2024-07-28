@@ -45,6 +45,8 @@
                             <el-menu-item index="/type">図書分類</el-menu-item>
                             <el-menu-item index="/book">図書情報</el-menu-item>
                             <el-menu-item index="/audit">休暇審査</el-menu-item>
+                            <el-menu-item index="/hotel">ホテル情報</el-menu-item>
+                            <el-menu-item index="/reserve">予約情報</el-menu-item>
                         </el-menu-item-group>
                     </el-submenu>
 

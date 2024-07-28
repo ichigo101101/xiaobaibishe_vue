@@ -4,7 +4,7 @@
             <el-input v-model="params.name" style="width: 200px" placeholder="休暇の理由を入力してください"></el-input>
             <el-button type="purple" style="margin-left: 10px" @click="findBySearch()">検索</el-button>
             <el-button type="purple" style="margin-left: 10px" @click="reset()">リセット</el-button>
-            <el-button type="primary" style="margin-left: 10px" @click="add()" v-if="user.role === 'ROLE_STUDENT'">追加</el-button>
+            <el-button type="primary" style="margin-left: 10px" @click="add()" v-if="user.role === 'ROLE_USER'">追加</el-button>
         </div>
         <div>
             <el-table :data="tableData" style="width: 100%">
@@ -18,10 +18,10 @@
 <!--                    <template slot-scope="scope">-->
 <!--                        <el-row type="flex" justify="start" align="middle" style="margin-bottom: 5px;">-->
 <!--                            <el-col :span="10">-->
-<!--                                <el-button type="purple" @click="edit(scope.row)" size="mini" v-if="isStudentRole">編集</el-button>-->
+<!--                                <el-button type="purple" @click="edit(scope.row)" size="mini" v-if="isUserRole">編集</el-button>-->
 <!--                            </el-col>-->
 <!--                            <el-col :span="12">-->
-<!--                                <el-button type="purple" @click="audit(scope.row)" size="mini" v-if="isTeacherRole">審査</el-button>-->
+<!--                                <el-button type="purple" @click="audit(scope.row)" size="mini" v-if="isAdminRole">審査</el-button>-->
 <!--                            </el-col>-->
 
 <!--                            <el-col :span="10">-->
@@ -35,8 +35,8 @@
 
                 <el-table-column label="操作">
                     <template slot-scope="scope">
-                        <el-button type="purple" @click="edit(scope.row)"  size="mini" v-if="isStudentRole">編集</el-button>
-                        <el-button type="purple" @click="audit(scope.row)" size="mini" v-if="isTeacherRole">審査</el-button>
+                        <el-button type="purple" @click="edit(scope.row)"  size="mini" v-if="isUserRole">編集</el-button>
+                        <el-button type="purple" @click="audit(scope.row)" size="mini" v-if="isAdminRole">審査</el-button>
                         <el-popconfirm title="削除しますか？" @confirm="del(scope.row.id)">
                             <el-button slot="reference" type="primary" style="margin-left: 5px" label="削除" size="mini">削除</el-button>
                         </el-popconfirm>
@@ -115,11 +115,11 @@
             };
         },
         computed: {
-            isStudentRole() {
-                return this.user.role === "ROLE_STUDENT";
+            isUserRole() {
+                return this.user.role === "ROLE_USER";
             },
-            isTeacherRole() {
-                return this.user.role === "ROLE_TEACHER";
+            isAdminRole() {
+                return this.user.role === "ROLE_ADMIN";
             }
         },
         created() {

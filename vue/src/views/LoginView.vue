@@ -12,8 +12,10 @@
                     </el-form-item>
                     <el-form-item>
                         <el-select v-model="admin.role" placeholder="選んでください" style="width: 80%">
-                            <el-option label="教員" value="ROLE_TEACHER"></el-option>
-                            <el-option label="学生" value="ROLE_STUDENT"></el-option>
+<!--                            <el-option label="教師" value="ROLE_TEACHER"></el-option>-->
+<!--                            <el-option label="学生" value="ROLE_STUDENT"></el-option>-->
+                            <el-option label="管理者" value="ROLE_ADMIN"></el-option>
+                            <el-option label="ユーザー" value="ROLE_USER"></el-option>
                         </el-select>
                     </el-form-item>
                     <el-form-item>

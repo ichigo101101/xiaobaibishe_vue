@@ -9,6 +9,8 @@ import RegisterView from '../views/RegisterView.vue'
 import BookView from '../views/BookView.vue'
 import TypeView from '../views/TypeView.vue'
 import AuditView from '../views/AuditView.vue'
+import HotelView from '../views/HotelView.vue'
+import ReserveView from '../views/ReserveView.vue'
 
 
 Vue.use(VueRouter)
@@ -52,6 +54,14 @@ const routes = [
       {
         path: 'audit',
         component: AuditView
+      },
+      {
+        path: 'hotel',
+        component: HotelView
+      },
+      {
+        path: 'reserve',
+        component: ReserveView
       },
     ]
   },

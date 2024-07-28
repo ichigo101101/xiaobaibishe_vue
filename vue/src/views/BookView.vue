@@ -3,7 +3,7 @@
         <div>
             <el-input v-model="params.name" style="width: 200px" placeholder="書名を入力してください"></el-input>
             <el-input v-model="params.author" style="width: 200px; margin-left: 5px" placeholder="著者を入力してください"></el-input>
-            <el-button type="purple" style="margin-left: 10px" @click="findBySearch()">捜査</el-button>
+            <el-button type="purple" style="margin-left: 10px" @click="findBySearch()">検索</el-button>
             <el-button type="purple" @click="reset()">リセット</el-button>
             <el-button type="primary" style="margin-left: 10px" @click="add()">追加</el-button>
         </div>
