@@ -47,6 +47,7 @@
                             <el-menu-item index="/audit">休暇審査</el-menu-item>
                             <el-menu-item index="/hotel">ホテル情報</el-menu-item>
                             <el-menu-item index="/reserve">予約情報</el-menu-item>
+                            <el-menu-item index="/log">ログ管理</el-menu-item>
                         </el-menu-item-group>
                     </el-submenu>
 

@@ -2,9 +2,9 @@
     <div>
         <div style="margin-bottom: 15px">
             <el-input v-model="params.name" style="width: 200px" placeholder="ホテル名を入力してください"></el-input>
-            <el-button type="warning" style="margin-left: 10px" @click="findBySearch()">検索</el-button>
-            <el-button type="warning" style="margin-left: 10px" @click="reset()">リセット</el-button>
-            <el-button type="primary" style="margin-left: 10px" @click="add()" v-if="user.role === 'ROLE_ADMIN'">追加</el-button>
+            <el-button type="warning" style="margin-left: 10px" @click="findBySearch">検索</el-button>
+            <el-button type="warning" style="margin-left: 10px" @click="reset">リセット</el-button>
+            <el-button type="primary" style="margin-left: 10px" @click="add" v-if="user.role === 'ROLE_ADMIN'">追加</el-button>
         </div>
         <div>
             <el-table :data="tableData" style="width: 100%">
@@ -21,9 +21,9 @@
                 <el-table-column prop="price" label="ホテル料金"></el-table-column>
                 <el-table-column prop="num" label="残り部屋数"></el-table-column>
                 <el-table-column label="操作">
-                    <template slot-scope="scope">
+                    <template v-slot="scope">
                         <el-button type="primary" @click="edit(scope.row)" v-if="user.role === 'ROLE_ADMIN'">編集</el-button>
-                        <el-button type="primary" @click="reserve(scope.row)" v-if="user.role !== 'ROLE_ADMIN'">予約</el-button>
+                        <el-button type="primary" @click="reserve(scope.row)" v-if="user.role === 'ROLE_USER'">予約</el-button>
                         <el-popconfirm title="削除してもよろしいですか？" @confirm="del(scope.row.id)">
                             <el-button slot="reference" type="danger" style="margin-left: 5px" v-if="user.role === 'ROLE_ADMIN'">削除</el-button>
                         </el-popconfirm>
@@ -62,7 +62,7 @@
                 </el-form>
                 <div slot="footer" class="dialog-footer">
                     <el-button @click="dialogFormVisible = false">キャンセル</el-button>
-                    <el-button type="primary" @click="submit()">確定</el-button>
+                    <el-button type="primary" @click="submit">確定</el-button>
                 </div>
             </el-dialog>
         </div>
@@ -77,7 +77,6 @@
             return {
                 params: {
                     name: '',
-                    author: '',
                     pageNum: 1,
                     pageSize: 5
                 },
@@ -86,7 +85,7 @@
                 dialogFormVisible: false,
                 form: {},
                 user: localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : {}
-            }
+            };
         },
         created() {
             this.findBySearch();
@@ -100,9 +99,9 @@
                         this.tableData = res.data.list;
                         this.total = res.data.total;
                     } else {
-                        this.$message.error(res.msg)
+                        this.$message.error(res.msg);
                     }
-                })
+                });
             },
             add() {
                 this.form = {};
@@ -116,9 +115,8 @@
                 this.params = {
                     pageNum: 1,
                     pageSize: 5,
-                    name: '',
-                    phone: ''
-                }
+                    name: ''
+                };
                 this.findBySearch();
             },
             handleSizeChange(pageSize) {
@@ -136,9 +134,9 @@
                         this.dialogFormVisible = false;
                         this.findBySearch();
                     } else {
-                        this.$message.error(res.msg)
+                        this.$message.error(res.msg);
                     }
-                })
+                });
             },
             del(id) {
                 request.delete("/hotel/" + id).then(res => {
@@ -146,27 +144,24 @@
                         this.$message.success("削除しました");
                         this.findBySearch();
                     } else {
-                        this.$message.error(res.msg)
+                        this.$message.error(res.msg);
                     }
-                })
+                });
             },
             successUpload(res) {
                 this.form.img = res.data;
             },
-            down(flag) {
-                location.href = 'http://localhost:8080/api/files/' + flag
-            },
             reserve(row) {
-                let param = {hotelId: row.id, userId: this.user.id}
+                let param = {hotelId: row.id, userId: this.user.id};
                 request.post("/reserve", param).then(res => {
                     if (res.code === '0') {
-                        this.$message.success("予約が成功しました")
-                        this.findBySearch()
+                        this.$message.success("予約が成功しました");
+                        this.findBySearch();
                     } else {
-                        this.$message.error(res.msg)
+                        this.$message.error(res.msg);
                     }
-                })
+                });
             }
         }
-    }
+    };
 </script>
