@@ -30,7 +30,7 @@
                     <el-submenu index="2">
                         <template slot="title">
                             <i class="el-icon-location"></i>
-                            <span slot="title">情報管理</span>
+                            <span slot="title">ユーザー管理</span>
                         </template>
                         <el-menu-item-group>
                             <el-menu-item index="/admin">管理者情報</el-menu-item>
@@ -48,6 +48,7 @@
                             <el-menu-item index="/hotel">ホテル情報</el-menu-item>
                             <el-menu-item index="/reserve">予約情報</el-menu-item>
                             <el-menu-item index="/log">ログ管理</el-menu-item>
+                            <el-menu-item index="/notice">システム告知</el-menu-item>
                         </el-menu-item-group>
                     </el-submenu>
 

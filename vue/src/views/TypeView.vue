@@ -2,9 +2,9 @@
     <div>
         <div style="margin-bottom: 15px">
             <el-input v-model="params.name" style="width: 200px" placeholder="カテゴリー名を入力してください"></el-input>
-            <el-button type="purple" style="margin-left: 10px" @click="findBySearch()">検索</el-button>
-            <el-button type="purple" style="margin-left: 10px" @click="reset()">リセット</el-button>
-            <el-button type="purple" style="margin-left: 10px" @click="add()">追加</el-button>
+            <el-button type="primary" style="margin-left: 10px" @click="findBySearch()">検索</el-button>
+            <el-button type="warning" @click="reset()">リセット</el-button>
+            <el-button type="primary" style="margin-left: 10px" @click="add()">追加</el-button>
             <el-popconfirm title="削除してもよろしいですか？？" @confirm="delBatch()">
                 <el-button slot="reference" type="primary" style="margin-left: 5px">一括削除</el-button>
             </el-popconfirm>
