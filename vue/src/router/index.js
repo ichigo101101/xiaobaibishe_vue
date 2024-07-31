@@ -4,7 +4,6 @@ import HomeView from '../views/HomeView.vue'
 import LoginView from '../views/LoginView.vue'
 import AdminView from '../views/AdminView.vue'
 import LayoutView from '../views/LayoutView.vue'
-// import RegisterView from "@/views/RegisterView";
 import RegisterView from '../views/RegisterView.vue'
 import BookView from '../views/BookView.vue'
 import TypeView from '../views/TypeView.vue'
@@ -13,7 +12,6 @@ import HotelView from '../views/HotelView.vue'
 import ReserveView from '../views/ReserveView.vue'
 import LogView from '../views/LogView.vue'
 import NoticeView from '../views/NoticeView.vue'
-
 
 Vue.use(VueRouter)
 
@@ -25,12 +23,12 @@ const routes = [
   },
   {
     path: '/register',
-    name: 'Register',
+    name: 'register',
     component: RegisterView
   },
   {
     path: '/',
-    name: 'Layout',
+    // name: 'Layout',
     component: LayoutView,
     children: [ // 子路由
       {
@@ -55,27 +53,31 @@ const routes = [
       },
       {
         path: 'audit',
+        name: 'audit',
         component: AuditView
       },
       {
         path: 'hotel',
+        name: 'hotel',
         component: HotelView
       },
       {
         path: 'reserve',
+        name: 'reserve',
         component: ReserveView
       },
       {
         path: 'log',
+        name: 'log',
         component: LogView
       },
       {
         path: 'notice',
+        name: 'notice',
         component: NoticeView
       },
     ]
   },
-
 ]
 
 const router = new VueRouter({
@@ -85,7 +87,7 @@ const router = new VueRouter({
 })
 
 // 路由守卫
-router.beforeEach((to ,from, next) => {
+router.beforeEach((to, from, next) => {
   const user = localStorage.getItem("user");
   if (!user && to.path !== '/login' && to.path !== '/register') {
     return next("/login");

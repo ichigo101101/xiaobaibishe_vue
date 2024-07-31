@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <div class="login-container">
         <div style="width: 400px; height: 400px; margin: 120px auto; background-color:rgba(245,180,201,0.54); border-radius: 10px">
-            <div style="width: 100%; height: 100px; font-size: 30px; line-height: 100px; text-align: center; color: #d04a70">新規登録歓迎</div>
+            <div style="width: 100%; height: 100px; font-size: 30px; line-height: 100px; text-align: center; color: #d04a70">新規登録</div>
             <div style="margin-top: 25px; text-align: center; height: 320px;">
                 <el-form :model="admin">
                     <el-form-item>
@@ -73,3 +73,15 @@
         }
     }
 </script>
+
+<style scoped>
+    .login-container{
+        height:100vh;
+        overflow:hidden;
+        background-image:url("@/assets/register_bg.jpg");
+        background-size: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
