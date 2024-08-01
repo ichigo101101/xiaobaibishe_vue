@@ -10,20 +10,20 @@
                     <el-form-item>
                         <el-input v-model="admin.password" show-password prefix-icon="el-icon-lock" style="width: 80%" placeholder="パスワードを入力してください"></el-input>
                     </el-form-item>
-<!--                    <el-form-item>-->
-<!--                        <el-select v-model="admin.role" placeholder="選んでください" style="width: 80%">-->
-<!--&lt;!&ndash;                            <el-option label="教師" value="ROLE_TEACHER"></el-option>&ndash;&gt;-->
-<!--&lt;!&ndash;                            <el-option label="学生" value="ROLE_STUDENT"></el-option>&ndash;&gt;-->
-<!--                            <el-option label="管理者" value="ROLE_ADMIN"></el-option>-->
-<!--                            <el-option label="ユーザー" value="ROLE_USER"></el-option>-->
-<!--                        </el-select>-->
-<!--                    </el-form-item>-->
                     <el-form-item>
-                        <div style="display: flex; justify-content: center">
-                            <el-input v-model="admin.verCode" prefix-icon="el-icon-user" style="width: 42%; margin-right: 10px" placeholder="認証コードを入力してください"></el-input>
-                            <img :src="captchaUrl" @click="clickImg()" width="140px" height="33px" />
-                        </div>
+                        <el-select v-model="admin.role" placeholder="選んでください" style="width: 80%">
+<!--                            <el-option label="教師" value="ROLE_TEACHER"></el-option>-->
+<!--                            <el-option label="学生" value="ROLE_STUDENT"></el-option>-->
+                            <el-option label="管理者" value="ROLE_ADMIN"></el-option>
+                            <el-option label="ユーザー" value="ROLE_USER"></el-option>
+                        </el-select>
                     </el-form-item>
+<!--                    <el-form-item>-->
+<!--                        <div style="display: flex; justify-content: center">-->
+<!--                            <el-input v-model="admin.verCode" prefix-icon="el-icon-user" style="width: 42%; margin-right: 10px" placeholder="認証コードを入力してください"></el-input>-->
+<!--                            <img :src="captchaUrl" @click="clickImg()" width="140px" height="33px" />-->
+<!--                        </div>-->
+<!--                    </el-form-item>-->
                     <el-form-item>
                         <el-button style="width: 80%; margin-top: 10px; background-color: #f78eb4; color: white; border-color: transparent;" type="primary" @click="login()">ログイン</el-button>
                     </el-form-item>
