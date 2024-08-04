@@ -23,6 +23,11 @@
                 <el-table-column prop="price" label="価格" ></el-table-column>
                 <el-table-column prop="press" label="出版社" ></el-table-column>
                 <el-table-column prop="typeName" label="図書分類"></el-table-column>
+                <el-table-column label="図書紹介">
+                    <template slot-scope="scope">
+                        <el-button type="success" @click="viewEditor(scope.row.content)">点击查看</el-button>
+                    </template>
+                </el-table-column>
 
                 <el-table-column label="操作">
                     <template slot-scope="scope">
@@ -55,31 +60,34 @@
                 </el-pagination>
             </div>
             <div>
-                <el-dialog title="情報を入力してください" :visible.sync="dialogFormVisible" width="30%">
+                <el-dialog title="情報を入力してください" :visible.sync="dialogFormVisible" width="50%">
                     <el-form :model="form">
-                        <el-form-item label="書名" label-width="20%">
+                        <el-form-item label="書名" label-width="15%">
                             <el-input v-model="form.name" autocomplete="off" style="width: 90%"></el-input>
                         </el-form-item>
-                        <el-form-item label="表紙" label-width="20%">
+                        <el-form-item label="表紙" label-width="15%">
                             <el-upload action="http://localhost:8080/api/files/upload" :on-success="successUpload">
                                 <el-button size="small" type="primary">アップロード</el-button>
                             </el-upload>
                         </el-form-item>
-                        <el-form-item label="著者" label-width="20%">
+                        <el-form-item label="著者" label-width="15%">
                             <el-input v-model="form.author" autocomplete="off" style="width: 90%"></el-input>
                         </el-form-item>
-                        <el-form-item label="価格" label-width="20%">
+                        <el-form-item label="価格" label-width="15%">
                             <el-input v-model="form.price" autocomplete="off" style="width: 90%"></el-input>
                         </el-form-item>
-                        <el-form-item label="出版社" label-width="20%">
+                        <el-form-item label="出版社" label-width="15%">
                             <el-input v-model="form.press" autocomplete="off" style="width: 90%"></el-input>
                         </el-form-item>
 
 
-                        <el-form-item label="図書分類" label-width="20%">
-                            <el-select v-model="form.typeId" placeholder="请选择" style="width: 90%">
+                        <el-form-item label="図書分類" label-width="15%">
+                            <el-select v-model="form.typeId" placeholder="選んでください" style="width: 90%">
                                 <el-option v-for="item in typeObjs" :key="item.id" :label="item.name" :value="item.id"></el-option>
                             </el-select>
+                        </el-form-item>
+                        <el-form-item label="図書紹介" label-width="15%">
+                            <div id="editor" style="width: 90%"></div>
                         </el-form-item>
                     </el-form>
                     <div slot="footer" class="dialog-footer">
@@ -96,6 +104,20 @@
 
 <script>
     import request from "@/utils/request";
+    import E from 'wangeditor'
+
+    let editor
+    function initWangEditor(content) {	setTimeout(() => {
+        if (!editor) {
+            editor = new E('#editor')
+            editor.config.placeholder = '请输入内容'
+            editor.config.uploadFileName = 'file'
+            editor.config.uploadImgServer = 'http://localhost:8080/files/wang/upload'
+            editor.create()
+        }
+        editor.txt.html(content)
+    }, 0)
+    }
 
     export default {
         name: "BookView",
@@ -169,6 +191,7 @@
             },
             add() {
                 this.form = {};
+                initWangEditor("");
                 this.dialogFormVisible = true;
             },
             edit(obj) {
@@ -176,6 +199,7 @@
                 this.dialogFormVisible = true;
             },
             submit() {
+                this.form.content = editor.txt.html();
                 request.post("/book", this.form).then(res => {
                     if (res.code === '0') {
                         this.$message({
